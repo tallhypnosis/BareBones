@@ -84,14 +84,36 @@ void terminal_putentryat(char c, uint8_t color, size_t x, size_t y)
 	terminal_buffer[index] = vga_entry(c, color);
 }
 
+void terminal_shiftUp()
+{
+  int i;
+  for(i=0; i<VGA_HEIGHT-1; i++) {
+    for(int j=0; j<VGA_WIDTH; j++) {
+      terminal_buffer[i*VGA_WIDTH + j] = terminal_buffer[(i+1)*VGA_WIDTH + j];
+    } 
+  }
+
+
+  for(int j=0; j<VGA_WIDTH; j++) {
+    terminal_buffer[i*VGA_WIDTH + j] = vga_entry(' ', terminal_color); 
+ 
+  }
+
+} 
+void terminal_newline ()
+{
+  ++terminal_row;
+  terminal_column = 0;
+}
+
 void terminal_putchar(char c) 
 {
 	terminal_putentryat(c, terminal_color, terminal_column, terminal_row);
   if(c == '\n') {
-    ++terminal_row; 
+    terminal_newline();
   }
 	if (++terminal_column == VGA_WIDTH) {
-		terminal_column = 0;
+		terminal_shiftUp();
 		if (++terminal_row == VGA_HEIGHT)
 			terminal_row = 0;
 	}
@@ -115,4 +137,34 @@ void kernel_main(void)
 
 	/* Newline support is left as an exercise. */
 	terminal_writestring("Hello, kernel World!\n");
+  terminal_writestring(
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor "
+"incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis "
+"nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore "
+"eu fugiat nulla pariatur.\n"
+"\n"
+"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia "
+"deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus "
+"error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, "
+"eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae "
+"dicta sunt explicabo.\n"
+"\n"
+"Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, "
+"sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. "
+"Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, "
+"adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et "
+"dolore magnam aliquam quaerat voluptatem.\n"
+"\n"
+"Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit "
+"laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum "
+"iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae "
+"consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?\n"
+"\n"
+"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis "
+"praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias "
+"excepturi sint occaecati cupiditate non provident, similique sunt in culpa "
+"qui officia deserunt mollitia animi.\n"
+);
+
 }
