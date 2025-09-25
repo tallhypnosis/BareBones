@@ -6,8 +6,43 @@ typedef struct {
   uint32_t eip, cs, eflags;
 } regs;
 
-extern void isr0_stub();
-
+extern void isr0_stub(); 
+extern void isr1_stub(); 
+extern void isr2_stub(); 
+extern void isr3_stub(); 
+extern void isr4_stub(); 
+extern void isr5_stub(); 
+extern void isr6_stub(); 
+extern void isr7_stub(); 
+extern void isr8_stub(); 
+extern void isr9_stub(); 
+extern void isr10_stub(); 
+extern void isr11_stub(); 
+extern void isr12_stub(); 
+extern void isr13_stub(); 
+extern void isr14_stub(); 
+extern void isr15_stub(); 
+extern void isr16_stub(); 
+extern void isr17_stub(); 
+extern void isr18_stub(); 
+extern void isr19_stub(); 
+extern void isr20_stub(); 
+extern void isr21_stub(); 
+extern void isr22_stub(); 
+extern void isr23_stub(); 
+extern void isr24_stub(); 
+extern void isr24_stub(); 
+extern void isr25_stub(); 
+extern void isr26_stub();
+extern void isr27_stub();
+extern void isr28_stub(); 
+extern void isr29_stub(); 
+extern void isr30_stub(); 
+extern void isr31_stub(); 
+extern void isr32_stub(); 
+ 
+ 
+ 
 void isr_common_stub(regs* r) {
   if(r->int_no == 0) {
     terminal_write("Divide by zero exception\n");
