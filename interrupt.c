@@ -68,3 +68,24 @@ typedef struct {
 
 
 InterruptDescriptor_t idt[256];
+
+
+set_idt_gate(0, isr0_stub, 0x08, 0x08E);
+set_idt_gate(1, isr1_stub, 0x08, 0x08E);
+set_idt_gate(2, isr2_stub, 0x08, 0x08E);
+set_idt_gate(3, isr3_stub, 0x08, 0x08E);
+set_idt_gate(4, isr4_stub, 0x08, 0x08E);
+set_idt_gate(5, isr5_stub, 0x08, 0x08E);
+set_idt_gate(6, isr6_stub, 0x08, 0x08E);
+set_idt_gate(7, isr7_stub, 0x08, 0x08E);
+set_idt_gate(8, isr8_stub, 0x08, 0x08E);
+set_idt_gate(9, isr9_stub, 0x08, 0x08E);
+set_idt_gate(10, isr10_stub, 0x08, 0x08E);
+set_idt_gate(11, isr11_stub, 0x08, 0x08E);
+set_idt_gate(12, isr12_stub, 0x08, 0x08E);
+set_idt_gate(13, isr13_stub, 0x08, 0x0E);
+set_idt_gate(14, isr14_stub, 0x08, 0x08E);
+set_idt_gate(15, isr15_stub, 0x08, 0x08E);
+set_idt_gate(16, isr16_stub, 0x08, 0x08E);
+set_idt_gate(17, isr17_stub, 0x08, 0x08E);
+
